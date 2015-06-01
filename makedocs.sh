@@ -3,4 +3,8 @@ python modify_conf.py
 cd docs
 make clean
 make html
-exit
+touch $null >> _build/html/.nojekyll
+cd ..
+git add *
+git commit -m "Updated Documentation"
+git subtree push --prefix docs/_build/html origin gh-pages
