@@ -1,0 +1,20 @@
+conf = open('docs/conf.py')
+conf_data = conf.read()
+conf.close()
+conf_data = conf_data.replace("""#sys.path.insert(0, os.path.abspath('.'))""","""sys.path.insert(0, os.path.abspath('..')) \nprint "Folder:" + str(os.listdir(os.path.abspath('..')))""")
+conf_data = conf_data.replace("""'alabaster'""","""'default'""")
+
+conf_data = conf_data.replace("""extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.todo',
+    'sphinx.ext.viewcode',
+]""","""extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.todo',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',
+]""")
+
+conf = open('docs/conf.py',"w")
+conf.write(conf_data)
+conf.close()
