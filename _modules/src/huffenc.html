@@ -50,6 +50,7 @@
 <span class="kn">import</span> <span class="nn">binary_io</span>
 <span class="kn">import</span> <span class="nn">operator</span>
 
+
 <div class="viewcode-block" id="generate_frequency_table"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.generate_frequency_table">[docs]</a><span class="k">def</span> <span class="nf">generate_frequency_table</span><span class="p">(</span><span class="n">string_in</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates a frequency table of the bytes from an input string</span>
@@ -177,13 +178,13 @@
     <span class="k">return</span> <span class="n">canonical_code</span>
 
 </div>
-<div class="viewcode-block" id="get_default_path"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.get_default_path">[docs]</a><span class="k">def</span> <span class="nf">get_default_path</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">encode_file</span><span class="p">):</span>
+<div class="viewcode-block" id="get_default_path"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.get_default_path">[docs]</a><span class="k">def</span> <span class="nf">get_default_path</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Automatically generates output path if not specified</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        path_in (string) : path to input file</span>
-<span class="sd">        encode_file (bool) :  encoding or decoding</span>
+<span class="sd">        encoding (bool) :  encoding or decoding</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        path_out (string) : auto-generated path to output</span>
@@ -192,7 +193,7 @@
 <span class="sd">        O(1) by inspection</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">encode_file</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">encoding</span><span class="p">:</span>
         <span class="n">path_out</span> <span class="o">=</span> <span class="n">path_in</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;_encoded&quot;</span> <span class="o">+</span> <span class="s">&quot;.hc&quot;</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">path_out</span> <span class="o">=</span> <span class="n">path_in</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">&quot;_decoded&quot;</span> <span class="o">+</span> <span class="s">&quot;.txt&quot;</span>
@@ -243,15 +244,15 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">huffman_tree</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">code_length_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">huffman_tree</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="mi">1</span><span class="p">}</span>
-        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">huffman_tree</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="n">code_length_map</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">return</span> <span class="n">code_length_map</span>
 
 </div>
-<div class="viewcode-block" id="encode"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.encode">[docs]</a><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
+<div class="viewcode-block" id="encode_file"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.encode_file">[docs]</a><span class="k">def</span> <span class="nf">encode_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
-<span class="sd">        path_in (String) : Path of file to encode</span>
+<span class="sd">        path_in (String) : Path of file to encode_file</span>
 <span class="sd">        path_out (String): Path of encoded file to create</span>
 
 <span class="sd">    Note:</span>
@@ -280,7 +281,7 @@
     <span class="k">return</span> <span class="n">code_map</span><span class="p">,</span> <span class="n">string_out</span>
 
 </div>
-<div class="viewcode-block" id="decode"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.decode">[docs]</a><span class="k">def</span> <span class="nf">decode</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
+<div class="viewcode-block" id="decode_file"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.decode_file">[docs]</a><span class="k">def</span> <span class="nf">decode_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Note:</span>
 <span class="sd">        Complexity: O(n)</span>
@@ -309,19 +310,14 @@
     <span class="k">print</span> <span class="s">&quot;Outputting to:&quot;</span> <span class="o">+</span> <span class="n">path_out</span>
     <span class="k">print</span> <span class="s">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">10</span>
     <span class="n">binary_io</span><span class="o">.</span><span class="n">write_string_to_file</span><span class="p">(</span><span class="n">path_out</span><span class="p">,</span> <span class="n">decoded_string</span><span class="p">)</span>  <span class="c"># O(n)</span>
-
-
-
-
-
 </div>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">def test():</span>
 <span class="sd">    import hashlib</span>
 <span class="sd">    import os</span>
 <span class="sd">    os.chdir(&#39;src&#39;)</span>
-<span class="sd">    encode(&#39;testing/test_file.txt&#39;,&#39;testing/test_file.hc&#39;)</span>
-<span class="sd">    decode(&#39;testing/test_file.hc&#39;,&#39;testing/test_file_decoded.txt&#39;)</span>
+<span class="sd">    encode_file(&#39;testing/test_file.txt&#39;,&#39;testing/test_file.hc&#39;)</span>
+<span class="sd">    decode_file(&#39;testing/test_file.hc&#39;,&#39;testing/test_file_decoded.txt&#39;)</span>
 
 <span class="sd">    f1 = open(&#39;testing/test_file.txt&#39;, &#39;rb&#39;)</span>
 <span class="sd">    a = hashlib.sha1(f1.read()).hexdigest()</span>

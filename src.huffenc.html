@@ -53,8 +53,8 @@
   <div class="section" id="module-src.huffenc">
 <span id="src-huffenc-module"></span><h1>src.huffenc module<a class="headerlink" href="#module-src.huffenc" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
-<dt id="src.huffenc.decode">
-<code class="descclassname">src.huffenc.</code><code class="descname">decode</code><span class="sig-paren">(</span><em>path</em>, <em>path_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/huffenc.html#decode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.huffenc.decode" title="Permalink to this definition">¶</a></dt>
+<dt id="src.huffenc.decode_file">
+<code class="descclassname">src.huffenc.</code><code class="descname">decode_file</code><span class="sig-paren">(</span><em>path</em>, <em>path_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/huffenc.html#decode_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.huffenc.decode_file" title="Permalink to this definition">¶</a></dt>
 <dd><div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Complexity: O(n)</p>
@@ -62,14 +62,14 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="src.huffenc.encode">
-<code class="descclassname">src.huffenc.</code><code class="descname">encode</code><span class="sig-paren">(</span><em>path_in</em>, <em>path_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/huffenc.html#encode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.huffenc.encode" title="Permalink to this definition">¶</a></dt>
+<dt id="src.huffenc.encode_file">
+<code class="descclassname">src.huffenc.</code><code class="descname">encode_file</code><span class="sig-paren">(</span><em>path_in</em>, <em>path_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/huffenc.html#encode_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.huffenc.encode_file" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>path_in</strong> (<em>String</em>) &#8211; Path of file to encode</li>
+<li><strong>path_in</strong> (<em>String</em>) &#8211; Path of file to encode_file</li>
 <li><strong>path_out</strong> (<em>String</em>) &#8211; Path of encoded file to create</li>
 </ul>
 </td>
@@ -222,7 +222,7 @@ Mapping from symbol to codeword or inverse</p>
 
 <dl class="function">
 <dt id="src.huffenc.get_default_path">
-<code class="descclassname">src.huffenc.</code><code class="descname">get_default_path</code><span class="sig-paren">(</span><em>path_in</em>, <em>encode_file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/huffenc.html#get_default_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.huffenc.get_default_path" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">src.huffenc.</code><code class="descname">get_default_path</code><span class="sig-paren">(</span><em>path_in</em>, <em>encoding</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/huffenc.html#get_default_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.huffenc.get_default_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Automatically generates output path if not specified</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -230,7 +230,7 @@ Mapping from symbol to codeword or inverse</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>path_in</strong> (<em>string</em>) &#8211; path to input file</li>
-<li><strong>encode_file</strong> (<em>bool</em>) &#8211; encoding or decoding</li>
+<li><strong>encoding</strong> (<em>bool</em>) &#8211; encoding or decoding</li>
 </ul>
 </td>
 </tr>
