@@ -48,15 +48,15 @@
             
   <h1>Source code for src.binary_io</h1><div class="highlight"><pre>
 <span class="k">def</span> <span class="nf">write_encoded_binary</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">binary_string</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
-    <span class="n">keys</span> <span class="o">=</span> <span class="n">create_binary_code_bytes</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
-<div class="viewcode-block" id="write_encoded_binary"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.write_encoded_binary">[docs]</a>    <span class="n">data</span> <span class="o">=</span> <span class="n">create_encoded_data_string</span><span class="p">(</span><span class="n">binary_string</span><span class="p">)</span>
+<div class="viewcode-block" id="write_encoded_binary"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.write_encoded_binary">[docs]</a>    <span class="n">keys</span> <span class="o">=</span> <span class="n">create_binary_code_bytes</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">create_encoded_data_string</span><span class="p">(</span><span class="n">binary_string</span><span class="p">)</span>
     <span class="n">file1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_out</span><span class="p">,</span> <span class="s">&#39;wb+&#39;</span><span class="p">)</span>
     <span class="n">file1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">keys</span> <span class="o">+</span> <span class="n">data</span><span class="p">)</span>
     <span class="n">file1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">read_encoded_binary</span><span class="p">(</span><span class="n">path_in</span><span class="p">):</span>
-    <span class="n">file1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span></div>
-<div class="viewcode-block" id="read_encoded_binary"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.read_encoded_binary">[docs]</a>    <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">file1</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
+<span class="k">def</span> <span class="nf">read_encoded_binary</span><span class="p">(</span><span class="n">path_in</span><span class="p">):</span></div>
+<div class="viewcode-block" id="read_encoded_binary"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.read_encoded_binary">[docs]</a>    <span class="n">file1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">bytearray</span><span class="p">(</span><span class="n">file1</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
     <span class="n">file1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="n">keys</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">256</span><span class="p">]</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">256</span><span class="p">:]</span>
@@ -65,21 +65,22 @@
     <span class="k">return</span> <span class="n">keys</span><span class="p">,</span> <span class="n">binary_string</span>
 
 
-<span class="k">def</span> <span class="nf">write_string_to_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">string_out</span><span class="p">):</span>
-    <span class="n">file_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;wb+&#39;</span><span class="p">)</span></div>
-<div class="viewcode-block" id="write_string_to_file"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.write_string_to_file">[docs]</a>    <span class="n">file_in</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">string_out</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">write_string_to_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">string_out</span><span class="p">):</span></div>
+<div class="viewcode-block" id="write_string_to_file"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.write_string_to_file">[docs]</a>    <span class="n">file_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;wb+&#39;</span><span class="p">)</span>
+    <span class="n">file_in</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">string_out</span><span class="p">)</span>
     <span class="n">file_in</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">read_string_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-    <span class="n">file_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span></div>
-<div class="viewcode-block" id="read_string_from_file"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.read_string_from_file">[docs]</a>    <span class="n">string_in</span> <span class="o">=</span> <span class="n">file_in</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">read_string_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">):</span></div>
+<div class="viewcode-block" id="read_string_from_file"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.read_string_from_file">[docs]</a>    <span class="n">file_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span>
+    <span class="n">string_in</span> <span class="o">=</span> <span class="n">file_in</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
     <span class="n">file_in</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">string_in</span>
 
 
-<span class="k">def</span> <span class="nf">create_encoded_data_string</span><span class="p">(</span><span class="n">string_out</span><span class="p">):</span>  <span class="c"># O(n) #Creates Binary Array of Encoded String</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">string_out</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span> <span class="o">+</span> <span class="mi">8</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span></div>
-<div class="viewcode-block" id="create_encoded_data_string"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.create_encoded_data_string">[docs]</a>         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">string_out</span><span class="p">),</span> <span class="mi">8</span><span class="p">)]</span>  <span class="c"># O(n)</span>
+<span class="k">def</span> <span class="nf">create_encoded_data_string</span><span class="p">(</span><span class="n">string_out</span><span class="p">):</span>  <span class="c"># O(n) #Creates Binary Array of Encoded String</span></div>
+<div class="viewcode-block" id="create_encoded_data_string"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.create_encoded_data_string">[docs]</a>    <span class="n">d</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">string_out</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span> <span class="o">+</span> <span class="mi">8</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">string_out</span><span class="p">),</span> <span class="mi">8</span><span class="p">)]</span>  <span class="c"># O(n)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">string_out</span><span class="p">)</span> <span class="o">%</span> <span class="mi">8</span>
     <span class="k">if</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">y</span> <span class="o">+=</span> <span class="mi">8</span>
@@ -89,9 +90,9 @@
     <span class="n">d</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>  <span class="c"># O(n)</span>
     <span class="k">return</span> <span class="n">d</span>
 
-<span class="k">def</span> <span class="nf">get_encoded_data_string</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="p">)</span></div>
-<div class="viewcode-block" id="get_encoded_data_string"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.get_encoded_data_string">[docs]</a>    <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;{0:08b}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]]</span>
+<span class="k">def</span> <span class="nf">get_encoded_data_string</span><span class="p">(</span><span class="n">a</span><span class="p">):</span></div>
+<div class="viewcode-block" id="get_encoded_data_string"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.get_encoded_data_string">[docs]</a>    <span class="n">b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;{0:08b}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]]</span>
     <span class="n">d</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
     <span class="n">d</span> <span class="o">=</span> <span class="n">d</span> <span class="o">+</span> <span class="p">(</span>
         <span class="s">&#39;{0:0</span><span class="si">%s</span><span class="s">b}&#39;</span> <span class="o">%</span>
@@ -99,18 +100,18 @@
     <span class="k">return</span> <span class="n">d</span>
 
 
-<span class="k">def</span> <span class="nf">create_binary_code_bytes</span><span class="p">(</span><span class="n">g0</span><span class="p">):</span>  <span class="c"># O(1) #Creates Binary array of Binary tree</span>
-    <span class="n">code_bytes</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>  <span class="c"># O(1)</span></div>
-<div class="viewcode-block" id="create_binary_code_bytes"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.create_binary_code_bytes">[docs]</a>    <span class="k">for</span> <span class="n">char_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">):</span>  <span class="c"># O(1)</span>
+<span class="k">def</span> <span class="nf">create_binary_code_bytes</span><span class="p">(</span><span class="n">g0</span><span class="p">):</span>  <span class="c"># O(1) #Creates Binary array of Binary tree</span></div>
+<div class="viewcode-block" id="create_binary_code_bytes"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.create_binary_code_bytes">[docs]</a>    <span class="n">code_bytes</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">()</span>  <span class="c"># O(1)</span>
+    <span class="k">for</span> <span class="n">char_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">256</span><span class="p">):</span>  <span class="c"># O(1)</span>
         <span class="k">if</span> <span class="nb">chr</span><span class="p">(</span><span class="n">char_index</span><span class="p">)</span> <span class="ow">in</span> <span class="n">g0</span><span class="p">:</span>  <span class="c"># O(1)</span>
             <span class="n">code_bytes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">g0</span><span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="n">char_index</span><span class="p">)])</span>  <span class="c"># O(1)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">code_bytes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c"># O(1)</span>
     <span class="k">return</span> <span class="n">code_bytes</span>
 
-<span class="k">def</span> <span class="nf">get_code_from_bytes</span><span class="p">(</span><span class="n">code_bytes</span><span class="p">):</span>
-    <span class="n">code</span> <span class="o">=</span> <span class="p">{}</span></div>
-<div class="viewcode-block" id="get_code_from_bytes"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.get_code_from_bytes">[docs]</a>    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">code_bytes</span><span class="p">)):</span>
+<span class="k">def</span> <span class="nf">get_code_from_bytes</span><span class="p">(</span><span class="n">code_bytes</span><span class="p">):</span></div>
+<div class="viewcode-block" id="get_code_from_bytes"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.get_code_from_bytes">[docs]</a>    <span class="n">code</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">code_bytes</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">code_bytes</span><span class="p">[</span><span class="n">q</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">code</span><span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="n">q</span><span class="p">)]</span> <span class="o">=</span> <span class="n">code_bytes</span><span class="p">[</span><span class="n">q</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">code</span>
