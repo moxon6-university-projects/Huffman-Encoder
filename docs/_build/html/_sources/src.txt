@@ -13,4 +13,5 @@ Submodules
 
    src.binary_io
    src.huffenc
+   src.huffenc_test
 

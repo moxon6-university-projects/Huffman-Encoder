@@ -90,7 +90,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">symbols</span> <span class="o">=</span> <span class="n">freq_table</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
     <span class="n">symbols</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">freq_table</span><span class="o">.</span><span class="n">__getitem__</span><span class="p">)</span>
-    <span class="n">minimum_frequency_pair</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">symbols</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">symbols</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="n">minimum_frequency_pair</span> <span class="o">=</span> <span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">symbols</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">minimum_frequency_pair</span>
 
 </div>
@@ -127,7 +127,7 @@
 <span class="sd">        code_length_map (dict) : Intermediate from symbol to code length (defaults to {} )</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        code_length_map (dict) : Mapping from symbol to code length (defaults to {} )</span>
+<span class="sd">        code_length_map (dict) : Mapping from symbol to code length</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">        O(1) - Huffman_tree depth is bounded at 255</span>
@@ -236,9 +236,7 @@
 <span class="sd">    Note:</span>
 <span class="sd">        Code length is equivalent to tree depth</span>
 
-
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">huffman_tree</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">code_length_map</span> <span class="o">=</span> <span class="n">generate_code_length_map</span><span class="p">(</span><span class="n">huffman_tree</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -251,6 +249,8 @@
 </div>
 <div class="viewcode-block" id="encode_file"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.encode_file">[docs]</a><span class="k">def</span> <span class="nf">encode_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Encode file path_in into new file path_out</span>
+
 <span class="sd">    Args:</span>
 <span class="sd">        path_in (String) : Path of file to encode_file</span>
 <span class="sd">        path_out (String): Path of encoded file to create</span>
@@ -262,11 +262,11 @@
     <span class="k">print</span> <span class="s">&quot;Huffman encoding: &quot;</span> <span class="o">+</span> <span class="n">path_in</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">plaintext</span> <span class="o">=</span> <span class="n">binary_io</span><span class="o">.</span><span class="n">read_string_from_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">)</span>  <span class="c"># O(n)</span>
-    <span class="k">except</span><span class="p">:</span>
+    <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
         <span class="k">print</span> <span class="s">&quot;File </span><span class="si">%s</span><span class="s"> could not be found for encoding. </span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">path_in</span>
-        <span class="k">raise</span> <span class="ne">Exception</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span>
     <span class="n">freq_table</span> <span class="o">=</span> <span class="n">generate_frequency_table</span><span class="p">(</span><span class="n">plaintext</span><span class="p">)</span>  <span class="c"># O(n)</span>
-    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">freq_table</span><span class="p">)):</span>  <span class="c"># O(1) since len(s)-1&lt;=255</span>
+    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">freq_table</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">):</span>  <span class="c"># O(1) since len(s)-1&lt;=255</span>
         <span class="n">freq_table</span> <span class="o">=</span> <span class="n">increment_table</span><span class="p">(</span><span class="n">freq_table</span><span class="p">)</span>  <span class="c"># O(1)</span>
     <span class="n">huffman_tree</span> <span class="o">=</span> <span class="n">freq_table</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>  <span class="c"># O(1)</span>
     <span class="n">code_length_map</span> <span class="o">=</span> <span class="n">generate_code_lengths</span><span class="p">(</span><span class="n">huffman_tree</span><span class="p">)</span>  <span class="c"># O(1)</span>
@@ -278,67 +278,43 @@
     <span class="k">print</span> <span class="s">&quot;Outputting to:&quot;</span> <span class="o">+</span> <span class="n">path_out</span>
     <span class="k">print</span> <span class="s">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">10</span>
     <span class="n">binary_io</span><span class="o">.</span><span class="n">write_encoded_binary</span><span class="p">(</span><span class="n">code_length_map</span><span class="p">,</span> <span class="n">string_out</span><span class="p">,</span> <span class="n">path_out</span><span class="p">)</span>  <span class="c"># O(n)</span>
-    <span class="k">return</span> <span class="n">code_map</span><span class="p">,</span> <span class="n">string_out</span>
 
 </div>
-<div class="viewcode-block" id="decode_file"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.decode_file">[docs]</a><span class="k">def</span> <span class="nf">decode_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
+<div class="viewcode-block" id="decode_file"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.decode_file">[docs]</a><span class="k">def</span> <span class="nf">decode_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decode file path_in into new file path_out</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path_in (String) : Path of file to encode_file</span>
+<span class="sd">        path_out (String): Path of encoded file to create</span>
+
 <span class="sd">    Note:</span>
-<span class="sd">        Complexity: O(n)</span>
+<span class="sd">        O(n) - Composition of called functions</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">print</span> <span class="s">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">10</span>
-    <span class="k">print</span> <span class="s">&quot;Huffman decoding: &quot;</span> <span class="o">+</span> <span class="n">path</span>
+    <span class="k">print</span> <span class="s">&quot;Huffman decoding: &quot;</span> <span class="o">+</span> <span class="n">path_in</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">g0</span><span class="p">,</span> <span class="n">encoded_string</span> <span class="o">=</span> <span class="n">binary_io</span><span class="o">.</span><span class="n">read_encoded_binary</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c"># O(n)</span>
+        <span class="n">code_length_map</span><span class="p">,</span> <span class="n">encoded_string</span> <span class="o">=</span> <span class="n">binary_io</span><span class="o">.</span><span class="n">read_encoded_binary</span><span class="p">(</span><span class="n">path_in</span><span class="p">)</span>  <span class="c"># O(n)</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="k">print</span> <span class="s">&quot;File </span><span class="si">%s</span><span class="s"> could not be found for decoding. </span><span class="se">\n</span><span class="s">&quot;</span>
         <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-        <span class="n">g0</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">code_length_map</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">encoded_string</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">g0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">f0</span> <span class="o">=</span> <span class="n">generate_symbol_mapping</span><span class="p">(</span><span class="n">g0</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>  <span class="c"># O(1)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">code_length_map</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">code_length_map</span> <span class="o">=</span> <span class="n">generate_symbol_mapping</span><span class="p">(</span><span class="n">code_length_map</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>  <span class="c"># O(1)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">f0</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">code_length_map</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">decoded_string</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
     <span class="n">partial_code</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">encoded_string</span><span class="p">:</span>  <span class="c"># O(n)</span>
-        <span class="n">partial_code</span> <span class="o">+=</span> <span class="n">q</span>
-        <span class="k">if</span> <span class="n">partial_code</span> <span class="ow">in</span> <span class="n">f0</span><span class="p">:</span>
-            <span class="n">decoded_string</span> <span class="o">+=</span> <span class="n">f0</span><span class="p">[</span><span class="n">partial_code</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">encoded_string</span><span class="p">:</span>  <span class="c"># O(n)</span>
+        <span class="n">partial_code</span> <span class="o">+=</span> <span class="n">char</span>
+        <span class="k">if</span> <span class="n">partial_code</span> <span class="ow">in</span> <span class="n">code_length_map</span><span class="p">:</span>
+            <span class="n">decoded_string</span> <span class="o">+=</span> <span class="n">code_length_map</span><span class="p">[</span><span class="n">partial_code</span><span class="p">]</span>
             <span class="n">partial_code</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
 
     <span class="k">print</span> <span class="s">&quot;Outputting to:&quot;</span> <span class="o">+</span> <span class="n">path_out</span>
     <span class="k">print</span> <span class="s">&quot;*&quot;</span> <span class="o">*</span> <span class="mi">10</span>
-    <span class="n">binary_io</span><span class="o">.</span><span class="n">write_string_to_file</span><span class="p">(</span><span class="n">path_out</span><span class="p">,</span> <span class="n">decoded_string</span><span class="p">)</span>  <span class="c"># O(n)</span>
-</div>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">def test():</span>
-<span class="sd">    import hashlib</span>
-<span class="sd">    import os</span>
-<span class="sd">    os.chdir(&#39;src&#39;)</span>
-<span class="sd">    encode_file(&#39;testing/test_file.txt&#39;,&#39;testing/test_file.hc&#39;)</span>
-<span class="sd">    decode_file(&#39;testing/test_file.hc&#39;,&#39;testing/test_file_decoded.txt&#39;)</span>
-
-<span class="sd">    f1 = open(&#39;testing/test_file.txt&#39;, &#39;rb&#39;)</span>
-<span class="sd">    a = hashlib.sha1(f1.read()).hexdigest()</span>
-<span class="sd">    f1.close()</span>
-
-<span class="sd">    f2 = open(&#39;testing/test_file_decoded.txt&#39;, &#39;rb&#39;)</span>
-<span class="sd">    b = hashlib.sha1(f2.read()).hexdigest()</span>
-<span class="sd">    f2.close()</span>
-
-<span class="sd">    if a == b:</span>
-<span class="sd">        report = &quot;SHA-1 hashes are equivalent. No errors were made in the encoding-decoding process for this file.&quot;</span>
-<span class="sd">    else:</span>
-<span class="sd">        report = &quot;SHA-1 hash inconsistency. Errors were made in the encoding-decoding process for this file.&quot;</span>
-<span class="sd">    print report</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">import os</span>
-<span class="sd">print os.listdir(os.curdir)</span>
-<span class="sd">test()</span>
-<span class="sd">&quot;&quot;&quot;</span>
+    <span class="n">binary_io</span><span class="o">.</span><span class="n">write_string_to_file</span><span class="p">(</span><span class="n">path_out</span><span class="p">,</span> <span class="n">decoded_string</span><span class="p">)</span>  <span class="c"># O(n)</span></div>
 </pre></div>
 
           </div>

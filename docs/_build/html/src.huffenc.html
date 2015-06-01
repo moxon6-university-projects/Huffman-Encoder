@@ -25,6 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Martin&#39;s Huffman Encoder  documentation" href="index.html" />
     <link rel="up" title="src package" href="src.html" />
+    <link rel="next" title="src.huffenc_test module" href="src.huffenc_test.html" />
     <link rel="prev" title="src.binary_io module" href="src.binary_io.html" /> 
   </head>
   <body role="document">
@@ -37,6 +38,9 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="src.huffenc_test.html" title="src.huffenc_test module"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="src.binary_io.html" title="src.binary_io module"
              accesskey="P">previous</a> |</li>
@@ -54,17 +58,31 @@
 <span id="src-huffenc-module"></span><h1>src.huffenc module<a class="headerlink" href="#module-src.huffenc" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="src.huffenc.decode_file">
-<code class="descclassname">src.huffenc.</code><code class="descname">decode_file</code><span class="sig-paren">(</span><em>path</em>, <em>path_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/huffenc.html#decode_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.huffenc.decode_file" title="Permalink to this definition">¶</a></dt>
-<dd><div class="admonition note">
+<code class="descclassname">src.huffenc.</code><code class="descname">decode_file</code><span class="sig-paren">(</span><em>path_in</em>, <em>path_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/huffenc.html#decode_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.huffenc.decode_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decode file path_in into new file path_out</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path_in</strong> (<em>String</em>) &#8211; Path of file to encode_file</li>
+<li><strong>path_out</strong> (<em>String</em>) &#8211; Path of encoded file to create</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Complexity: O(n)</p>
+<p class="last">O(n) - Composition of called functions</p>
 </div>
 </dd></dl>
 
 <dl class="function">
 <dt id="src.huffenc.encode_file">
 <code class="descclassname">src.huffenc.</code><code class="descname">encode_file</code><span class="sig-paren">(</span><em>path_in</em>, <em>path_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/huffenc.html#encode_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.huffenc.encode_file" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
+<dd><p>Encode file path_in into new file path_out</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
@@ -127,7 +145,7 @@ Encoded String</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>code_length_map</strong> &#8211;
-Mapping from symbol to code length (defaults to {} )</p>
+Mapping from symbol to code length</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">dict</p>
@@ -306,6 +324,9 @@ Augmented frequency table</td>
   <h4>Previous topic</h4>
   <p class="topless"><a href="src.binary_io.html"
                         title="previous chapter">src.binary_io module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="src.huffenc_test.html"
+                        title="next chapter">src.huffenc_test module</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -339,6 +360,9 @@ Augmented frequency table</td>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="src.huffenc_test.html" title="src.huffenc_test module"
+             >next</a> |</li>
         <li class="right" >
           <a href="src.binary_io.html" title="src.binary_io module"
              >previous</a> |</li>

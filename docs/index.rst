@@ -1,5 +1,5 @@
 .. Martin's Huffman Encoder documentation master file, created by
-   sphinx-quickstart on Mon Jun  1 22:49:02 2015.
+   sphinx-quickstart on Tue Jun  2 00:37:25 2015.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 

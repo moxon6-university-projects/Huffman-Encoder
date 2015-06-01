@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Martin's Huffman Encoder documentation build configuration file, created by
-# sphinx-quickstart on Mon Jun  1 22:49:02 2015.
+# sphinx-quickstart on Tue Jun  2 00:37:25 2015.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.

@@ -71,7 +71,7 @@ def huffman_main(encoding_mode, input_path, output_path):
             output_path = huffenc.get_default_path(input_path, encoding_mode == "encode_file")
     except Exception as e:
         print str(e)
-        print 'Usage: \"python Huffman.pyw enc input output\" \nenc is either \'encode_file\' or \'decode_file\' for ' +\
+        print 'Usage: \"python Huffman_GUI.pyw enc input output\" \nenc is either \'encode_file\' or \'decode_file\' for ' +\
               'encoding or decoding. \ninput is the input path. \noutput is the output path.'
 
     if encoding_mode == "encode_file":

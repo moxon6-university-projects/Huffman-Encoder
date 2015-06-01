@@ -41,7 +41,7 @@ def get_minimum_frequency_pair(freq_table):
     """
     symbols = freq_table.keys()
     symbols.sort(key=freq_table.__getitem__)
-    minimum_frequency_pair = tuple([symbols[1], symbols[0]])
+    minimum_frequency_pair = (symbols[1], symbols[0])
     return minimum_frequency_pair
 
 
@@ -78,7 +78,7 @@ def generate_code_length_map(huffman_tree, tree_depth=0, code_length_map={}):
         code_length_map (dict) : Intermediate from symbol to code length (defaults to {} )
 
     Returns:
-        code_length_map (dict) : Mapping from symbol to code length (defaults to {} )
+        code_length_map (dict) : Mapping from symbol to code length
 
     Note:
         O(1) - Huffman_tree depth is bounded at 255
@@ -187,9 +187,7 @@ def generate_code_lengths(huffman_tree):
     Note:
         Code length is equivalent to tree depth
 
-
     """
-
     if len(huffman_tree) > 1:
         code_length_map = generate_code_length_map(huffman_tree)
     else:
@@ -202,6 +200,8 @@ def generate_code_lengths(huffman_tree):
 
 def encode_file(path_in, path_out):
     """
+    Encode file path_in into new file path_out
+
     Args:
         path_in (String) : Path of file to encode_file
         path_out (String): Path of encoded file to create
@@ -213,11 +213,11 @@ def encode_file(path_in, path_out):
     print "Huffman encoding: " + path_in
     try:
         plaintext = binary_io.read_string_from_file(path_in)  # O(n)
-    except:
+    except IOError:
         print "File %s could not be found for encoding. \n" % path_in
-        raise Exception
+        raise SystemExit
     freq_table = generate_frequency_table(plaintext)  # O(n)
-    for q in range(0, len(freq_table)):  # O(1) since len(s)-1<=255
+    for q in range(1, len(freq_table) - 1 ):  # O(1) since len(s)-1<=255
         freq_table = increment_table(freq_table)  # O(1)
     huffman_tree = freq_table.keys()  # O(1)
     code_length_map = generate_code_lengths(huffman_tree)  # O(1)
@@ -229,66 +229,40 @@ def encode_file(path_in, path_out):
     print "Outputting to:" + path_out
     print "*" * 10
     binary_io.write_encoded_binary(code_length_map, string_out, path_out)  # O(n)
-    return code_map, string_out
 
 
-def decode_file(path, path_out):
+def decode_file(path_in, path_out):
     """
+    Decode file path_in into new file path_out
+
+    Args:
+        path_in (String) : Path of file to encode_file
+        path_out (String): Path of encoded file to create
+
     Note:
-        Complexity: O(n)
+        O(n) - Composition of called functions
     """
     print "*" * 10
-    print "Huffman decoding: " + path
+    print "Huffman decoding: " + path_in
     try:
-        g0, encoded_string = binary_io.read_encoded_binary(path)  # O(n)
+        code_length_map, encoded_string = binary_io.read_encoded_binary(path_in)  # O(n)
     except Exception as e:
         print "File %s could not be found for decoding. \n"
         print str(e)
-        g0 = {}
+        code_length_map = {}
         encoded_string = ""
-    if len(g0) > 0:
-        f0 = generate_symbol_mapping(g0, True)  # O(1)
+    if len(code_length_map) > 0:
+        code_length_map = generate_symbol_mapping(code_length_map, True)  # O(1)
     else:
-        f0 = {}
+        code_length_map = {}
     decoded_string = ""
     partial_code = ""
-    for q in encoded_string:  # O(n)
-        partial_code += q
-        if partial_code in f0:
-            decoded_string += f0[partial_code]
+    for char in encoded_string:  # O(n)
+        partial_code += char
+        if partial_code in code_length_map:
+            decoded_string += code_length_map[partial_code]
             partial_code = ""
 
     print "Outputting to:" + path_out
     print "*" * 10
     binary_io.write_string_to_file(path_out, decoded_string)  # O(n)
-
-"""
-def test():
-    import hashlib
-    import os
-    os.chdir('src')
-    encode_file('testing/test_file.txt','testing/test_file.hc')
-    decode_file('testing/test_file.hc','testing/test_file_decoded.txt')
-
-    f1 = open('testing/test_file.txt', 'rb')
-    a = hashlib.sha1(f1.read()).hexdigest()
-    f1.close()
-
-    f2 = open('testing/test_file_decoded.txt', 'rb')
-    b = hashlib.sha1(f2.read()).hexdigest()
-    f2.close()
-
-    if a == b:
-        report = "SHA-1 hashes are equivalent. No errors were made in the encoding-decoding process for this file."
-    else:
-        report = "SHA-1 hash inconsistency. Errors were made in the encoding-decoding process for this file."
-    print report
-"""
-
-"""
-import os
-print os.listdir(os.curdir)
-test()
-"""
-
-

@@ -1,5 +1,4 @@
 
-
 def write_encoded_binary(keys, binary_string, path_out):
     keys = create_binary_code_bytes(keys)
     data = create_encoded_data_string(binary_string)
@@ -22,6 +21,7 @@ def write_string_to_file(path, string_out):
     file_in = open(path, 'wb+')
     file_in.write(string_out)
     file_in.close()
+
 
 def read_string_from_file(path):
     file_in = open(path, 'rb')
