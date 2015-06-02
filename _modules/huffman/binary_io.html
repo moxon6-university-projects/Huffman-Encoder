@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>src.binary_io &mdash; Martin&#39;s Huffman Encoder  documentation</title>
+    <title>huffman.binary_io &mdash; Martin&#39;s Huffman Encoder  documentation</title>
     
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -46,9 +46,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>Source code for src.binary_io</h1><div class="highlight"><pre>
+  <h1>Source code for huffman.binary_io</h1><div class="highlight"><pre>
 <span class="k">def</span> <span class="nf">write_encoded_binary</span><span class="p">(</span><span class="n">code_length_map</span><span class="p">,</span> <span class="n">binary_string</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
-<div class="viewcode-block" id="write_encoded_binary"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.write_encoded_binary">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="write_encoded_binary"><a class="viewcode-back" href="../../huffman.binary_io.html#huffman.binary_io.write_encoded_binary">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Takes byte arrays of code lengths and string of binary symbols</span>
 <span class="sd">    and writes them to path_out</span>
 
@@ -64,7 +64,7 @@
     <span class="n">file1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">read_encoded_binary</span><span class="p">(</span><span class="n">path_in</span><span class="p">):</span></div>
-<div class="viewcode-block" id="read_encoded_binary"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.read_encoded_binary">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="read_encoded_binary"><a class="viewcode-back" href="../../huffman.binary_io.html#huffman.binary_io.read_encoded_binary">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Takes a path location and generates a code length map and encoded string</span>
 
 <span class="sd">    Args:</span>
@@ -85,7 +85,7 @@
 
 
 <span class="k">def</span> <span class="nf">write_string_to_file</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">string_out</span><span class="p">):</span></div>
-<div class="viewcode-block" id="write_string_to_file"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.write_string_to_file">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="write_string_to_file"><a class="viewcode-back" href="../../huffman.binary_io.html#huffman.binary_io.write_string_to_file">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        path (string) : Path to write decoded file to</span>
 <span class="sd">        string_out (string) : Decoded file data string</span>
@@ -96,7 +96,7 @@
 
 
 <span class="k">def</span> <span class="nf">read_string_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">):</span></div>
-<div class="viewcode-block" id="read_string_from_file"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.read_string_from_file">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="read_string_from_file"><a class="viewcode-back" href="../../huffman.binary_io.html#huffman.binary_io.read_string_from_file">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
 <span class="sd">        path (string) : Path to read decoded file from</span>
 
@@ -113,7 +113,7 @@
 
 
 <span class="k">def</span> <span class="nf">create_encoded_data_string</span><span class="p">(</span><span class="n">binary_string</span><span class="p">):</span></div>
-<div class="viewcode-block" id="create_encoded_data_string"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.create_encoded_data_string">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="create_encoded_data_string"><a class="viewcode-back" href="../../huffman.binary_io.html#huffman.binary_io.create_encoded_data_string">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates Binary Array of Encoded String</span>
 
 <span class="sd">    Args:</span>
@@ -134,7 +134,7 @@
     <span class="k">return</span> <span class="n">byte_list</span>
 
 <span class="k">def</span> <span class="nf">get_encoded_data_string</span><span class="p">(</span><span class="n">data_bytes</span><span class="p">):</span></div>
-<div class="viewcode-block" id="get_encoded_data_string"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.get_encoded_data_string">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="get_encoded_data_string"><a class="viewcode-back" href="../../huffman.binary_io.html#huffman.binary_io.get_encoded_data_string">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates and encoded string of binary characters from a bytearray of data_bytes</span>
 
 <span class="sd">    Args:</span>
@@ -154,7 +154,7 @@
 
 
 <span class="k">def</span> <span class="nf">create_binary_code_bytes</span><span class="p">(</span><span class="n">code_length_map</span><span class="p">):</span></div>
-<div class="viewcode-block" id="create_binary_code_bytes"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.create_binary_code_bytes">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="create_binary_code_bytes"><a class="viewcode-back" href="../../huffman.binary_io.html#huffman.binary_io.create_binary_code_bytes">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates binary code bytes from a code length map</span>
 
 <span class="sd">    Args:</span>
@@ -175,7 +175,7 @@
     <span class="k">return</span> <span class="n">code_bytes</span>
 
 <span class="k">def</span> <span class="nf">get_code_lengths_from_bytes</span><span class="p">(</span><span class="n">code_bytes</span><span class="p">):</span></div>
-<div class="viewcode-block" id="get_code_lengths_from_bytes"><a class="viewcode-back" href="../../src.binary_io.html#src.binary_io.get_code_lengths_from_bytes">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="get_code_lengths_from_bytes"><a class="viewcode-back" href="../../huffman.binary_io.html#huffman.binary_io.get_code_lengths_from_bytes">[docs]</a>    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates a mapping of symbol to code length from bytes of code lengths</span>
 
 <span class="sd">    Args:</span>
