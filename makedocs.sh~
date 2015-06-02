@@ -3,7 +3,7 @@ python modify_conf.py
 cd docs
 make clean
 make html
-echo $null >> _build/html/.nojekyll
+touch $null >> _build/html/.nojekyll
 cd ..
 git add *
 git commit -m "Updated Documentation"

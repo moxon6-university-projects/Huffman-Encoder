@@ -1,4 +1,4 @@
-sphinx-apidoc -A "Martin Moxon" -P -H "Martin's Huffman Encoder" -M -e -f -F -o docs src/
+sphinx-apidoc -A "Martin Moxon" -P -H "Martin's Huffman Encoder" -M -e -f -F -o docs huffman/
 python modify_conf.py
 cd docs
 make clean

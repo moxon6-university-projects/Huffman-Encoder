@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>src.huffenc &mdash; Martin&#39;s Huffman Encoder  documentation</title>
+    <title>huffman.huffenc &mdash; Martin&#39;s Huffman Encoder  documentation</title>
     
     <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -46,7 +46,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>Source code for src.huffenc</h1><div class="highlight"><pre>
+  <h1>Source code for huffman.huffenc</h1><div class="highlight"><pre>
 <span class="kn">import</span> <span class="nn">binary_io</span>
 <span class="kn">import</span> <span class="nn">operator</span>
 <span class="sd">&quot;&quot;&quot;</span>
@@ -56,7 +56,7 @@
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="generate_frequency_table"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.generate_frequency_table">[docs]</a><span class="k">def</span> <span class="nf">generate_frequency_table</span><span class="p">(</span><span class="n">string_in</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_frequency_table"><a class="viewcode-back" href="../../huffman.huffenc.html#huffman.huffenc.generate_frequency_table">[docs]</a><span class="k">def</span> <span class="nf">generate_frequency_table</span><span class="p">(</span><span class="n">string_in</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates a frequency table of the bytes from an input string</span>
 
@@ -79,7 +79,7 @@
     <span class="k">return</span> <span class="n">freq</span>
 
 </div>
-<div class="viewcode-block" id="get_minimum_frequency_pair"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.get_minimum_frequency_pair">[docs]</a><span class="k">def</span> <span class="nf">get_minimum_frequency_pair</span><span class="p">(</span><span class="n">freq_table</span><span class="p">):</span>
+<div class="viewcode-block" id="get_minimum_frequency_pair"><a class="viewcode-back" href="../../huffman.huffenc.html#huffman.huffenc.get_minimum_frequency_pair">[docs]</a><span class="k">def</span> <span class="nf">get_minimum_frequency_pair</span><span class="p">(</span><span class="n">freq_table</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get two min values from dictionary, O(1) since len(freq_table)&lt;=256</span>
 
@@ -99,7 +99,7 @@
     <span class="k">return</span> <span class="n">minimum_frequency_pair</span>
 
 </div>
-<div class="viewcode-block" id="increment_table"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.increment_table">[docs]</a><span class="k">def</span> <span class="nf">increment_table</span><span class="p">(</span><span class="n">freq_table</span><span class="p">):</span>
+<div class="viewcode-block" id="increment_table"><a class="viewcode-back" href="../../huffman.huffenc.html#huffman.huffenc.increment_table">[docs]</a><span class="k">def</span> <span class="nf">increment_table</span><span class="p">(</span><span class="n">freq_table</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Move from table &#39;s_n&#39; to &#39;s_n+1&#39;</span>
 
@@ -122,7 +122,7 @@
     <span class="k">return</span> <span class="n">freq_table</span>
 
 </div>
-<div class="viewcode-block" id="generate_code_length_map"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.generate_code_length_map">[docs]</a><span class="k">def</span> <span class="nf">generate_code_length_map</span><span class="p">(</span><span class="n">huffman_tree</span><span class="p">,</span> <span class="n">tree_depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">code_length_map</span><span class="o">=</span><span class="p">{}):</span>
+<div class="viewcode-block" id="generate_code_length_map"><a class="viewcode-back" href="../../huffman.huffenc.html#huffman.huffenc.generate_code_length_map">[docs]</a><span class="k">def</span> <span class="nf">generate_code_length_map</span><span class="p">(</span><span class="n">huffman_tree</span><span class="p">,</span> <span class="n">tree_depth</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">code_length_map</span><span class="o">=</span><span class="p">{}):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    For each side of the huffman_tree, recursively generate the length of the huffman_tree to that point</span>
 
@@ -146,7 +146,7 @@
     <span class="k">return</span> <span class="n">code_length_map</span>
 
 </div>
-<div class="viewcode-block" id="generate_symbol_mapping"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.generate_symbol_mapping">[docs]</a><span class="k">def</span> <span class="nf">generate_symbol_mapping</span><span class="p">(</span><span class="n">code_length_map</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_symbol_mapping"><a class="viewcode-back" href="../../huffman.huffenc.html#huffman.huffenc.generate_symbol_mapping">[docs]</a><span class="k">def</span> <span class="nf">generate_symbol_mapping</span><span class="p">(</span><span class="n">code_length_map</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates Canonical Huffman Code from code lengths</span>
 
@@ -183,7 +183,7 @@
     <span class="k">return</span> <span class="n">canonical_code</span>
 
 </div>
-<div class="viewcode-block" id="get_default_path"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.get_default_path">[docs]</a><span class="k">def</span> <span class="nf">get_default_path</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+<div class="viewcode-block" id="get_default_path"><a class="viewcode-back" href="../../huffman.huffenc.html#huffman.huffenc.get_default_path">[docs]</a><span class="k">def</span> <span class="nf">get_default_path</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Automatically generates output path if not specified</span>
 
@@ -205,7 +205,7 @@
     <span class="k">return</span> <span class="n">path_out</span>
 
 </div>
-<div class="viewcode-block" id="encode_string"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.encode_string">[docs]</a><span class="k">def</span> <span class="nf">encode_string</span><span class="p">(</span><span class="n">string_in</span><span class="p">,</span> <span class="n">code_map</span><span class="p">):</span>
+<div class="viewcode-block" id="encode_string"><a class="viewcode-back" href="../../huffman.huffenc.html#huffman.huffenc.encode_string">[docs]</a><span class="k">def</span> <span class="nf">encode_string</span><span class="p">(</span><span class="n">string_in</span><span class="p">,</span> <span class="n">code_map</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Maps input string to output using the generated code map</span>
 
@@ -226,7 +226,7 @@
     <span class="k">return</span> <span class="n">string_out</span>
 
 </div>
-<div class="viewcode-block" id="generate_code_lengths"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.generate_code_lengths">[docs]</a><span class="k">def</span> <span class="nf">generate_code_lengths</span><span class="p">(</span><span class="n">huffman_tree</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_code_lengths"><a class="viewcode-back" href="../../huffman.huffenc.html#huffman.huffenc.generate_code_lengths">[docs]</a><span class="k">def</span> <span class="nf">generate_code_lengths</span><span class="p">(</span><span class="n">huffman_tree</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generates a mapping of symbol to code length.</span>
 
@@ -252,7 +252,7 @@
     <span class="k">return</span> <span class="n">code_length_map</span>
 
 </div>
-<div class="viewcode-block" id="encode_file"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.encode_file">[docs]</a><span class="k">def</span> <span class="nf">encode_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
+<div class="viewcode-block" id="encode_file"><a class="viewcode-back" href="../../huffman.huffenc.html#huffman.huffenc.encode_file">[docs]</a><span class="k">def</span> <span class="nf">encode_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Encode file path_in into new file path_out</span>
 
@@ -285,7 +285,7 @@
     <span class="n">binary_io</span><span class="o">.</span><span class="n">write_encoded_binary</span><span class="p">(</span><span class="n">code_length_map</span><span class="p">,</span> <span class="n">string_out</span><span class="p">,</span> <span class="n">path_out</span><span class="p">)</span>  <span class="c"># O(n)</span>
 
 </div>
-<div class="viewcode-block" id="decode_file"><a class="viewcode-back" href="../../src.huffenc.html#src.huffenc.decode_file">[docs]</a><span class="k">def</span> <span class="nf">decode_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
+<div class="viewcode-block" id="decode_file"><a class="viewcode-back" href="../../huffman.huffenc.html#huffman.huffenc.decode_file">[docs]</a><span class="k">def</span> <span class="nf">decode_file</span><span class="p">(</span><span class="n">path_in</span><span class="p">,</span> <span class="n">path_out</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Decode file path_in into new file path_out</span>
 
