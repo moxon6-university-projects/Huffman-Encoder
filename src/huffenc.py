@@ -1,6 +1,11 @@
 import binary_io
 import operator
+"""
+Main Huffman Encoding Module:
 
+Main functions are encode and decode
+
+"""
 
 def generate_frequency_table(string_in):
     """
@@ -217,7 +222,7 @@ def encode_file(path_in, path_out):
         print "File %s could not be found for encoding. \n" % path_in
         raise SystemExit
     freq_table = generate_frequency_table(plaintext)  # O(n)
-    for q in range(1, len(freq_table) - 1 ):  # O(1) since len(s)-1<=255
+    for q in range(1, len(freq_table) - 1):  # O(1) since len(s)-1<=255
         freq_table = increment_table(freq_table)  # O(1)
     huffman_tree = freq_table.keys()  # O(1)
     code_length_map = generate_code_lengths(huffman_tree)  # O(1)
